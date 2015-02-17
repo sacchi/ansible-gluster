@@ -1,0 +1,17 @@
+---
+- hosts: master
+  remote_user: root
+  gather_facts: no
+  vars:
+   brickinfo: "[ '10.70.46.13:/rhs/brick1/v5',
+                 '10.70.46.15:/rhs/brick1/v5',
+                 '10.70.46.17:/rhs/brick1/v5',
+                 '10.70.46.19:/rhs/brick1/v5' ]"
+
+
+  tasks:
+  - name: Create a volume
+    gluster: command=volume_create
+              volname=demo
+              force=yes
+              server="{{ brickinfo }}"

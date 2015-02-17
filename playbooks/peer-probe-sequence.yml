@@ -1,0 +1,10 @@
+---
+- hosts: master
+  remote_user: root
+  gather_facts: no
+
+  tasks:
+  - name: Probe the peers
+    gluster: command=peer_probe server={{ item }}
+    with_sequence: start=13 end=19 stride=2 format=10.70.46.%d
+

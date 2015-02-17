@@ -1,0 +1,13 @@
+---
+- hosts: master
+  remote_user: root
+  gather_facts: no
+
+  tasks:
+  - name: Detach the peers
+    gluster: command=peer_detach
+              server={{ item }}
+    with_items:
+     - 10.70.46.15
+     - 10.70.46.17
+     - 10.70.46.19

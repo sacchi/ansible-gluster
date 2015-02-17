@@ -1,0 +1,12 @@
+---
+- hosts: rhs-servers
+  remote_user: root
+  tasks:
+  - name: Check the GlusterFS version in the cluster
+    yum: pkg=glusterfs state=latest
+  - name: Check if glusterd is started
+    service: name=glusterd state=started
+  - name: Check the peer status
+    action: command gluster peer status
+  - name: List the pool
+    action: command gluster pool list
